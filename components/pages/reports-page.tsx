@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { formatCurrency, leadSources, trend } from "@/lib/crm-data";
+import { formatCurrency, funnel, leadSources, reportRows, segmentRevenue, trend } from "@/lib/crm-data";
+import type { TranslationKey } from "@/lib/i18n";
 import { useCrm } from "@/components/crm-provider";
 import { DownloadIcon } from "@/components/icons";
 import { Button, Card, PageHeader, cx } from "@/components/ui";
@@ -12,6 +13,12 @@ const multipliers: Record<Range, number> = {
   thisMonth: 0.32,
   quarter: 0.68,
   year: 1,
+};
+
+type ReportCard = {
+  label: TranslationKey;
+  note: string;
+  value: string;
 };
 
 function downloadCsv(filename: string, rows: string[][]) {
@@ -30,6 +37,12 @@ export function ReportsPage() {
   const values = useMemo(() => trend.map((value) => Math.round(value * multipliers[range])), [range]);
   const max = Math.max(...values);
   const totalRevenue = values.reduce((sum, item) => sum + item, 0) * 1000;
+  const reportCards: ReportCard[] = [
+    { label: "weightedForecast", value: formatCurrency(totalRevenue), note: "+16.8%" },
+    { label: "winRate", value: "27.8%", note: "+3.1 pts" },
+    { label: "pipelineVelocity", value: "$42K/d", note: "+9.4%" },
+    { label: "savedViews", value: "12", note: t(range) },
+  ];
 
   return (
     <div className="space-y-6">
@@ -66,6 +79,20 @@ export function ReportsPage() {
           </button>
         ))}
       </div>
+
+      <section className="grid gap-4 md:grid-cols-4">
+        {reportCards.map((item) => (
+          <Card className="p-5" key={item.label}>
+            <p className="text-sm font-medium text-slate-500">{t(item.label)}</p>
+            <div className="mt-4 flex items-end justify-between gap-3">
+              <p className="text-2xl font-semibold">{item.value}</p>
+              <span className="rounded-md bg-cyan-50 px-2 py-1 text-xs font-semibold text-cyan-700">
+                {item.note}
+              </span>
+            </div>
+          </Card>
+        ))}
+      </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
         <Card className="p-6">
@@ -117,6 +144,77 @@ export function ReportsPage() {
           </div>
         </Card>
       </section>
+
+      <section className="grid gap-6 xl:grid-cols-[0.85fr_1.15fr]">
+        <Card className="p-6">
+          <h2 className="text-lg font-semibold">{t("funnelAnalysis")}</h2>
+          <div className="mt-6 space-y-4">
+            {funnel.map((stage) => (
+              <div key={stage.label}>
+                <div className="mb-2 flex items-center justify-between text-sm">
+                  <span className="font-semibold">{t(stage.label)}</span>
+                  <span className="text-slate-500">{stage.value}</span>
+                </div>
+                <div className="h-9 rounded-lg bg-slate-100">
+                  <div
+                    className="grid h-full place-items-center rounded-lg bg-gradient-to-r from-[#07111f] to-[#1fb6a6] text-xs font-semibold text-white"
+                    style={{ width: `${stage.width}%` }}
+                  >
+                    {stage.width}%
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <h2 className="text-lg font-semibold">{t("repPerformance")}</h2>
+          <div className="mt-5 overflow-x-auto">
+            <table className="w-full min-w-[620px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-slate-200 text-xs uppercase text-slate-400">
+                  <th className="py-3 pr-4">{t("owner")}</th>
+                  <th className="py-3 pr-4">{t("monthlyRevenue")}</th>
+                  <th className="py-3 pr-4">{t("winRate")}</th>
+                  <th className="py-3">{t("pipelineVelocity")}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {reportRows.map((row) => (
+                  <tr key={row.rep}>
+                    <td className="py-4 pr-4 font-semibold">{row.rep}</td>
+                    <td className="py-4 pr-4">{formatCurrency(row.revenue)}</td>
+                    <td className="py-4 pr-4">{row.winRate}%</td>
+                    <td className="py-4 font-semibold text-cyan-700">{row.velocity}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+      </section>
+
+      <Card className="p-6">
+        <h2 className="text-lg font-semibold">{t("revenueBySegment")}</h2>
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
+          {segmentRevenue.map((segment) => (
+            <div className="rounded-lg border border-slate-100 bg-slate-50 p-4" key={segment.label}>
+              <div className="flex items-center justify-between">
+                <p className="font-semibold">{t(segment.label)}</p>
+                <span className="text-sm font-semibold text-slate-500">{segment.share}%</span>
+              </div>
+              <p className="mt-3 text-2xl font-semibold">{formatCurrency(segment.value)}</p>
+              <div className="mt-4 h-2 rounded-full bg-white">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-[#07111f] to-[#1fb6a6]"
+                  style={{ width: `${segment.share}%` }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
     </div>
   );
 }

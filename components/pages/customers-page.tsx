@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { customers, formatCurrency, type Customer, type SegmentKey } from "@/lib/crm-data";
+import { customerSignals, customers, formatCurrency, type Customer, type SegmentKey } from "@/lib/crm-data";
 import { useCrm } from "@/components/crm-provider";
 import { SearchIcon } from "@/components/icons";
 import { Button, Card, PageHeader, StatusPill, inputClass } from "@/components/ui";
@@ -128,6 +128,40 @@ export function CustomersPage() {
               </dl>
             </div>
           ) : null}
+        </Card>
+      </section>
+
+      <section className="grid gap-6 xl:grid-cols-[0.75fr_1.25fr]">
+        <Card className="p-6">
+          <h2 className="text-lg font-semibold">{t("customer360")}</h2>
+          <div className="mt-5 space-y-4">
+            {customerSignals.map((signal) => (
+              <div className="rounded-lg border border-slate-100 bg-slate-50 p-4" key={signal.label}>
+                <div className="flex items-center justify-between">
+                  <p className="font-semibold">{t(signal.label)}</p>
+                  <span className="text-lg font-semibold">{signal.value}</span>
+                </div>
+                <p className="mt-2 text-sm text-slate-500">{signal.detail}</p>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <h2 className="text-lg font-semibold">{t("timeline")}</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {[
+              { date: "May 21", title: "Executive check-in", detail: "Budget holder confirmed renewal path" },
+              { date: "May 18", title: "Product usage spike", detail: "Analytics workspace active across 4 teams" },
+              { date: "May 12", title: "Support review", detail: "Priority ticket resolved within SLA" },
+            ].map((event) => (
+              <div className="rounded-lg border border-slate-100 bg-slate-50 p-4" key={event.title}>
+                <p className="text-xs font-semibold uppercase text-cyan-700">{event.date}</p>
+                <p className="mt-3 font-semibold">{event.title}</p>
+                <p className="mt-2 text-sm text-slate-500">{event.detail}</p>
+              </div>
+            ))}
+          </div>
         </Card>
       </section>
     </div>

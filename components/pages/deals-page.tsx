@@ -3,6 +3,7 @@
 import { useState } from "react";
 import {
   dealStages,
+  dealDeskItems,
   formatCurrency,
   initialDeals,
   type Deal,
@@ -28,6 +29,25 @@ export function DealsPage() {
   return (
     <div className="space-y-6">
       <PageHeader subtitle={t("dealsSubtitle")} title={t("dealsTitle")} />
+
+      <section className="grid gap-4 md:grid-cols-3">
+        {dealDeskItems.map((item) => (
+          <Card className="p-5" key={item.account}>
+            <p className="text-sm font-medium text-slate-500">{t("dealDesk")}</p>
+            <h2 className="mt-3 text-lg font-semibold">{item.account}</h2>
+            <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
+              <div className="rounded-lg bg-slate-50 p-3">
+                <p className="text-xs font-semibold uppercase text-slate-400">{t("quoteStatus")}</p>
+                <p className="mt-2 font-semibold">{t(item.quote)}</p>
+              </div>
+              <div className="rounded-lg bg-slate-50 p-3">
+                <p className="text-xs font-semibold uppercase text-slate-400">{t("approval")}</p>
+                <p className="mt-2 font-semibold">{t(item.approval)}</p>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </section>
 
       <section className="grid gap-4 xl:grid-cols-6">
         {dealStages.map((stage) => {

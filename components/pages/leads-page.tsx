@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import {
   formatCurrency,
   initialLeads,
+  leadIntelligence,
   type Lead,
   type SourceKey,
   type StatusKey,
@@ -31,6 +32,7 @@ export function LeadsPage() {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<StatusKey | "all">("all");
   const [showForm, setShowForm] = useState(false);
+  const [enrolledSequences, setEnrolledSequences] = useState<string[]>([]);
   const [form, setForm] = useState({
     company: "",
     name: "",
@@ -226,6 +228,62 @@ export function LeadsPage() {
           ) : null}
         </div>
       </Card>
+
+      <section className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+        <Card className="p-6">
+          <h2 className="text-lg font-semibold">{t("leadIntelligence")}</h2>
+          <div className="mt-5 space-y-4">
+            {leadIntelligence.map((item) => (
+              <div className="rounded-lg border border-slate-100 bg-slate-50 p-4" key={item.company}>
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="font-semibold">{item.company}</p>
+                    <p className="mt-1 text-xs text-slate-500">{item.sequence}</p>
+                  </div>
+                  <span className="rounded-md bg-cyan-50 px-2 py-1 text-xs font-semibold text-cyan-700">
+                    {t("leadScore")} {item.score}
+                  </span>
+                </div>
+                <div className="mt-4 h-2 rounded-full bg-white">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-[#07111f] to-[#1fb6a6]"
+                    style={{ width: `${item.score}%` }}
+                  />
+                </div>
+                <div className="mt-3 flex items-center justify-between text-xs font-semibold text-slate-500">
+                  <span>{t("buyingIntent")}: {item.intent}</span>
+                  <span>{t("enrichment")}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card className="p-6">
+          <h2 className="text-lg font-semibold">{t("automationPlaybooks")}</h2>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
+            {["Inbound demo follow-up", "Executive nurture", "Renewal warm-up"].map((sequence, index) => (
+              <div className="rounded-lg border border-slate-100 bg-slate-50 p-4" key={sequence}>
+                <p className="font-semibold">{sequence}</p>
+                <p className="mt-2 text-sm text-slate-500">
+                  {4 + index} steps · {12 + index * 6 + (enrolledSequences.includes(sequence) ? 1 : 0)} {t("enrolled")}
+                </p>
+                <Button
+                  className="mt-4 h-8 px-3"
+                  onClick={() =>
+                    setEnrolledSequences((current) =>
+                      current.includes(sequence) ? current : [...current, sequence],
+                    )
+                  }
+                  variant={enrolledSequences.includes(sequence) ? "primary" : "secondary"}
+                >
+                  {enrolledSequences.includes(sequence) ? t("enrolled") : t("enrollSequence")}
+                </Button>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </section>
     </div>
   );
 }

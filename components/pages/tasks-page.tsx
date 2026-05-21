@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { initialTasks, type PriorityKey, type TaskItem } from "@/lib/crm-data";
+import { initialTasks, workload, type PriorityKey, type TaskItem } from "@/lib/crm-data";
 import { useCrm } from "@/components/crm-provider";
 import { CheckIcon, PlusIcon } from "@/components/icons";
 import { Button, Card, Field, PageHeader, StatusPill, inputClass } from "@/components/ui";
@@ -55,6 +55,21 @@ export function TasksPage() {
         subtitle={t("tasksSubtitle")}
         title={t("tasksTitle")}
       />
+
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        {workload.map((item) => (
+          <Card className="p-5" key={item.label}>
+            <p className="text-sm font-medium text-slate-500">{t(item.label)}</p>
+            <p className="mt-4 text-3xl font-semibold">{item.value}</p>
+            <div className="mt-4 h-2 rounded-full bg-slate-100">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#07111f] to-[#1fb6a6]"
+                style={{ width: `${Math.min(100, item.value * 5)}%` }}
+              />
+            </div>
+          </Card>
+        ))}
+      </section>
 
       {showForm ? (
         <Card className="p-5">

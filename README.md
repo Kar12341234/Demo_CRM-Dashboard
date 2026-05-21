@@ -16,11 +16,12 @@ A professional B2B CRM system demo for Fiverr / Upwork portfolio presentation. I
 - Collapsible sidebar navigation with responsive mobile navigation
 - Traditional Chinese, Simplified Chinese, and English UI switching
 - Dashboard KPI overview, revenue trend, agenda, recent activity, and source breakdown
-- Lead management with add lead, search, status filter, conversion, and CSV export
-- Customer management with search, segment filter, and profile detail panel
-- Deals Kanban pipeline with stage movement and won-deal actions
-- Task management with add task, priority filter, complete, and reopen actions
-- Reports with range switching, sales chart, lead source breakdown, and CSV export
+- Executive command center with weighted forecast, quota attainment, pipeline coverage, account risk, team leaderboard, and automation playbooks
+- Lead management with add lead, search, status filter, conversion, scoring, enrichment, sequence enrollment, and CSV export
+- Customer management with search, segment filter, profile detail panel, Customer 360 signals, and account timeline
+- Deals Kanban pipeline with stage movement, won-deal actions, forecast context, quote status, and deal desk approvals
+- Task management with add task, priority filter, workload metrics, complete, and reopen actions
+- Reports with range switching, sales chart, funnel analysis, revenue by segment, rep performance table, lead source breakdown, and CSV export
 - Settings with language, notifications, weekly digest, revenue target, and team permission views
 
 ## Getting Started
