@@ -37,31 +37,31 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
   const { collapsed, locale, setCollapsed, setLocale, t } = useCrm();
 
   return (
-    <div className="min-h-screen bg-[#f4f6f9] text-slate-950">
+    <div className="min-h-screen bg-[#eef3f8] text-slate-950">
       <div className="flex min-h-screen">
         <aside
           className={cx(
-            "sticky top-0 hidden h-screen shrink-0 border-r border-slate-200/80 bg-white/92 px-3 py-5 shadow-[12px_0_40px_rgba(15,23,42,0.04)] backdrop-blur xl:block",
+            "sticky top-0 hidden h-screen shrink-0 border-r border-white/10 bg-[#07111f] px-3 py-5 shadow-[18px_0_60px_rgba(7,17,31,0.22)] xl:block",
             collapsed ? "w-[88px]" : "w-[286px]",
           )}
         >
           <div className="flex h-full flex-col">
             <div className={cx("flex items-center", collapsed ? "justify-center" : "justify-between")}>
               <Link className="flex min-w-0 items-center gap-3" href="/dashboard">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-slate-950 text-sm font-bold text-white">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-cyan-400 to-emerald-400 text-sm font-bold text-[#07111f] shadow-[0_16px_32px_rgba(45,212,191,0.18)]">
                   N
                 </span>
                 {!collapsed ? (
                   <span className="min-w-0">
-                    <span className="block text-sm font-semibold">{t("appName")}</span>
-                    <span className="block truncate text-xs text-slate-500">{t("workspace")}</span>
+                    <span className="block text-sm font-semibold text-white">{t("appName")}</span>
+                    <span className="block truncate text-xs text-slate-400">{t("workspace")}</span>
                   </span>
                 ) : null}
               </Link>
               {!collapsed ? (
                 <button
                   aria-label={t("collapse")}
-                  className="grid h-9 w-9 place-items-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-950"
+                  className="grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition hover:bg-white/10 hover:text-white"
                   onClick={() => setCollapsed(true)}
                   type="button"
                 >
@@ -73,7 +73,7 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
             {collapsed ? (
               <button
                 aria-label={t("expand")}
-                className="mx-auto mt-4 grid h-9 w-9 place-items-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-950"
+                className="mx-auto mt-4 grid h-9 w-9 place-items-center rounded-lg text-slate-400 transition hover:bg-white/10 hover:text-white"
                 onClick={() => setCollapsed(false)}
                 type="button"
               >
@@ -91,8 +91,8 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
                       "group flex h-11 items-center rounded-lg px-3 text-sm font-semibold transition",
                       collapsed ? "justify-center" : "gap-3",
                       active
-                        ? "bg-slate-950 text-white shadow-sm"
-                        : "text-slate-500 hover:bg-slate-100 hover:text-slate-950",
+                        ? "bg-white text-[#07111f] shadow-[0_14px_36px_rgba(0,0,0,0.2)]"
+                        : "text-slate-400 hover:bg-white/10 hover:text-white",
                     )}
                     href={item.href}
                     key={item.href}
@@ -108,12 +108,12 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
             <div className="mt-auto">
               <div
                 className={cx(
-                  "rounded-lg border border-slate-200 bg-slate-50 p-3",
+                  "rounded-lg border border-white/10 bg-white/[0.06] p-3",
                   collapsed && "flex justify-center border-0 bg-transparent p-0",
                 )}
               >
                 {!collapsed ? (
-                  <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase text-slate-500">
+                  <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase text-slate-400">
                     <GlobeIcon className="h-4 w-4" />
                     {t("language")}
                   </div>
@@ -121,7 +121,7 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
                 <select
                   aria-label={t("language")}
                   className={cx(
-                    "h-9 rounded-lg border border-slate-200 bg-white px-2 text-sm font-semibold text-slate-700 outline-none",
+                    "h-9 rounded-lg border border-white/10 bg-white/10 px-2 text-sm font-semibold text-white outline-none",
                     collapsed ? "w-14" : "w-full",
                   )}
                   onChange={(event) => setLocale(event.target.value as Locale)}
@@ -135,7 +135,7 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
                 </select>
               </div>
               {!collapsed ? (
-                <p className="mt-3 px-2 text-xs text-slate-400">{t("portfolio")}</p>
+                <p className="mt-3 px-2 text-xs text-slate-500">{t("portfolio")}</p>
               ) : null}
             </div>
           </div>
@@ -145,7 +145,7 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
           <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/86 px-4 py-3 backdrop-blur xl:hidden">
             <div className="flex items-center justify-between gap-3">
               <Link className="flex items-center gap-3" href="/dashboard">
-                <span className="grid h-10 w-10 place-items-center rounded-lg bg-slate-950 text-sm font-bold text-white">
+                <span className="grid h-10 w-10 place-items-center rounded-lg bg-[#07111f] text-sm font-bold text-white">
                   N
                 </span>
                 <span>
@@ -174,7 +174,7 @@ export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) 
                   <Link
                     className={cx(
                       "flex h-10 min-w-max items-center gap-2 rounded-lg px-3 text-sm font-semibold",
-                      active ? "bg-slate-950 text-white" : "bg-slate-100 text-slate-600",
+                      active ? "bg-[#07111f] text-white" : "bg-white text-slate-600",
                     )}
                     href={item.href}
                     key={item.href}

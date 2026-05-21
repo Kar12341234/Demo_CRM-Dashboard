@@ -80,13 +80,15 @@ export function ReportsPage() {
               +16.8%
             </span>
           </div>
-          <div className="mt-8 flex h-80 items-end gap-3 rounded-lg bg-slate-50 px-4 pb-4 pt-8">
+          <div className="mt-8 flex h-80 gap-3 rounded-lg bg-[#f7fafc] px-4 pb-4 pt-8 ring-1 ring-slate-950/[0.03]">
             {values.map((value, index) => (
-              <div className="flex flex-1 flex-col items-center gap-3" key={`${range}-${value}-${index}`}>
-                <div
-                  className="w-full rounded-t-md bg-slate-950"
-                  style={{ height: `${Math.max(12, (value / max) * 100)}%` }}
-                />
+              <div className="flex h-full flex-1 flex-col items-center gap-3" key={`${range}-${value}-${index}`}>
+                <div className="flex min-h-0 w-full flex-1 items-end">
+                  <div
+                    className="w-full rounded-t-md bg-gradient-to-t from-[#07111f] via-[#155e75] to-[#22c55e] shadow-[0_12px_26px_rgba(7,17,31,0.18)]"
+                    style={{ height: `${Math.max(12, (value / max) * 100)}%` }}
+                  />
+                </div>
                 <span className="text-xs font-semibold text-slate-400">{index + 1}</span>
               </div>
             ))}
@@ -105,7 +107,10 @@ export function ReportsPage() {
                   </span>
                 </div>
                 <div className="h-3 overflow-hidden rounded-full bg-slate-100">
-                  <div className="h-full rounded-full bg-slate-950" style={{ width: `${source.share}%` }} />
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-[#07111f] to-[#1fb6a6]"
+                    style={{ width: `${source.share}%` }}
+                  />
                 </div>
               </div>
             ))}

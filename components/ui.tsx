@@ -13,7 +13,7 @@ export function Card({
   return (
     <section
       className={cx(
-        "rounded-[10px] border border-slate-200/80 bg-white/88 shadow-[0_18px_50px_rgba(15,23,42,0.07)] backdrop-blur",
+        "rounded-lg border border-white/70 bg-white/90 shadow-[0_22px_70px_rgba(13,27,54,0.09)] ring-1 ring-slate-950/[0.025] backdrop-blur",
         className,
       )}
       {...props}
@@ -56,10 +56,11 @@ export function Button({
       className={cx(
         "inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold transition",
         "focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2",
-        variant === "primary" && "bg-slate-950 text-white shadow-sm hover:bg-slate-800",
+        variant === "primary" &&
+          "bg-[#07111f] text-white shadow-[0_12px_28px_rgba(7,17,31,0.18)] hover:bg-[#12233a]",
         variant === "secondary" &&
-          "border border-slate-200 bg-white text-slate-700 shadow-sm hover:border-slate-300 hover:bg-slate-50",
-        variant === "ghost" && "text-slate-600 hover:bg-slate-100 hover:text-slate-950",
+          "border border-slate-200 bg-white text-slate-800 shadow-sm hover:border-slate-300 hover:bg-slate-50",
+        variant === "ghost" && "text-slate-600 hover:bg-white/70 hover:text-slate-950",
         className,
       )}
       type={props.type ?? "button"}
@@ -74,11 +75,16 @@ export function LinkButton({
   children,
   className,
   href,
-}: Readonly<{ children: ReactNode; className?: string; href: string }>) {
+  variant = "primary",
+}: Readonly<{ children: ReactNode; className?: string; href: string; variant?: "primary" | "secondary" }>) {
   return (
     <Link
       className={cx(
-        "inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800",
+        "inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2",
+        variant === "primary" &&
+          "bg-[#07111f] text-white shadow-[0_12px_28px_rgba(7,17,31,0.18)] hover:bg-[#12233a]",
+        variant === "secondary" &&
+          "border border-slate-200 bg-white text-slate-900 shadow-sm hover:border-slate-300 hover:bg-slate-50",
         className,
       )}
       href={href}
@@ -101,7 +107,7 @@ export function Field({
 }
 
 export const inputClass =
-  "h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-slate-400 focus:ring-2 focus:ring-slate-100";
+  "h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100";
 
 export function StatusPill({
   children,

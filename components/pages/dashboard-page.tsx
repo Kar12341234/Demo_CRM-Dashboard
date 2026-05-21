@@ -18,7 +18,7 @@ export function DashboardPage() {
               {t("viewLeads")}
               <ArrowRightIcon className="h-4 w-4" />
             </LinkButton>
-            <LinkButton className="bg-white text-slate-900 ring-1 ring-slate-200 hover:bg-slate-50" href="/reports">
+            <LinkButton href="/reports" variant="secondary">
               <ReportsIcon className="h-4 w-4" />
               {t("openReports")}
             </LinkButton>
@@ -29,11 +29,25 @@ export function DashboardPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-        {metrics.map((metric) => (
-          <Card className="p-5" key={metric.label}>
-            <p className="text-sm font-medium text-slate-500">{t(metric.label)}</p>
+        {metrics.map((metric, index) => (
+          <Card
+            className={`relative overflow-hidden p-5 ${
+              index === 0 ? "bg-[#07111f] text-white ring-0" : ""
+            }`}
+            key={metric.label}
+          >
+            <div
+              className={`absolute left-0 top-0 h-full w-1 ${
+                index % 3 === 0 ? "bg-cyan-400" : index % 3 === 1 ? "bg-emerald-400" : "bg-amber-400"
+              }`}
+            />
+            <p className={`text-sm font-medium ${index === 0 ? "text-slate-300" : "text-slate-500"}`}>
+              {t(metric.label)}
+            </p>
             <div className="mt-5 flex items-end justify-between gap-3">
-              <p className="text-3xl font-semibold tracking-normal text-slate-950">{metric.value}</p>
+              <p className={`text-3xl font-semibold tracking-normal ${index === 0 ? "text-white" : "text-slate-950"}`}>
+                {metric.value}
+              </p>
               <span className="rounded-md bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700">
                 {metric.delta}
               </span>
@@ -53,13 +67,15 @@ export function DashboardPage() {
               2026
             </span>
           </div>
-          <div className="mt-8 flex h-72 items-end gap-3 rounded-lg bg-slate-50 px-4 pb-4 pt-8">
+          <div className="mt-8 flex h-72 gap-3 rounded-lg bg-[#f7fafc] px-4 pb-4 pt-8 ring-1 ring-slate-950/[0.03]">
             {trend.map((value, index) => (
-              <div className="flex flex-1 flex-col items-center gap-3" key={`${value}-${index}`}>
-                <div
-                  className="w-full rounded-t-md bg-slate-950 shadow-[0_8px_22px_rgba(15,23,42,0.14)]"
-                  style={{ height: `${Math.max(16, (value / maxTrend) * 100)}%` }}
-                />
+              <div className="flex h-full flex-1 flex-col items-center gap-3" key={`${value}-${index}`}>
+                <div className="flex min-h-0 w-full flex-1 items-end">
+                  <div
+                    className="w-full rounded-t-md bg-gradient-to-t from-[#07111f] to-[#1fb6a6] shadow-[0_12px_26px_rgba(7,17,31,0.18)]"
+                    style={{ height: `${Math.max(16, (value / maxTrend) * 100)}%` }}
+                  />
+                </div>
                 <span className="text-xs font-semibold text-slate-400">{index + 1}</span>
               </div>
             ))}

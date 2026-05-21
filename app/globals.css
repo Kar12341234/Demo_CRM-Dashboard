@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: light;
-  background: #f4f6f9;
+  background: #eef3f8;
   color: #0f172a;
 }
 
@@ -16,10 +16,10 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(244, 246, 249, 0.98)),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.025) 1px, transparent 1px),
-    #f4f6f9;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(238, 243, 248, 0.98)),
+    linear-gradient(90deg, rgba(7, 17, 31, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(7, 17, 31, 0.025) 1px, transparent 1px),
+    #eef3f8;
   background-size:
     auto,
     44px 44px,
