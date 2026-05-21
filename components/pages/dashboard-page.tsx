@@ -32,7 +32,9 @@ export function DashboardPage() {
         {metrics.map((metric, index) => (
           <Card
             className={`relative overflow-hidden p-5 ${
-              index === 0 ? "bg-[#07111f] text-white ring-0" : ""
+              index === 0
+                ? "!border-[#07111f] !bg-[#07111f] !text-white !ring-0 shadow-[0_24px_70px_rgba(7,17,31,0.26)]"
+                : ""
             }`}
             key={metric.label}
           >
