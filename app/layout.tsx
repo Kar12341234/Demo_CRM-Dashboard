@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { AppShell } from "@/components/app-shell";
+import { CrmProvider } from "@/components/crm-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <CrmProvider>
+          <AppShell>{children}</AppShell>
+        </CrmProvider>
+      </body>
     </html>
   );
 }

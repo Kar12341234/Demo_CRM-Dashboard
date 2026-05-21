@@ -1,6 +1,6 @@
 # CRM Dashboard Demo
 
-A professional B2B CRM dashboard demo for Fiverr / Upwork portfolio presentation. It showcases customer management, sales pipeline tracking, task follow-ups, revenue analytics, and reporting modules in a responsive SaaS-style admin interface.
+A professional B2B CRM system demo for Fiverr / Upwork portfolio presentation. It showcases customer management, sales pipeline tracking, lead qualification, task follow-ups, revenue analytics, reporting, and settings workflows in a responsive SaaS-style admin interface.
 
 ## Tech Stack
 
@@ -12,12 +12,16 @@ A professional B2B CRM dashboard demo for Fiverr / Upwork portfolio presentation
 
 ## Features
 
-- Sidebar navigation for Dashboard, Leads, Customers, Deals, Tasks, Reports, and Settings
-- KPI overview for total leads, new customers, active deals, monthly revenue, and conversion rate
-- Sales pipeline cards for new leads, contacted leads, proposals, negotiation, won, and lost deals
-- Customer table with account status, deal value, and last contact date
-- Task and follow-up section for calls, reminders, and priority work
-- Reports section with revenue trend chart and lead source breakdown
+- Multi-page App Router CRM system: `/dashboard`, `/leads`, `/customers`, `/deals`, `/tasks`, `/reports`, and `/settings`
+- Collapsible sidebar navigation with responsive mobile navigation
+- Traditional Chinese, Simplified Chinese, and English UI switching
+- Dashboard KPI overview, revenue trend, agenda, recent activity, and source breakdown
+- Lead management with add lead, search, status filter, conversion, and CSV export
+- Customer management with search, segment filter, and profile detail panel
+- Deals Kanban pipeline with stage movement and won-deal actions
+- Task management with add task, priority filter, complete, and reopen actions
+- Reports with range switching, sales chart, lead source breakdown, and CSV export
+- Settings with language, notifications, weekly digest, revenue target, and team permission views
 
 ## Getting Started
 
