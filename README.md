@@ -41,3 +41,15 @@ The project is structured using reusable dashboard components, modular page sect
 ## Status
 
 Portfolio demo project for SaaS dashboard and CRM development.
+
+## Keywords
+ChatGPT SaaS
+AI SaaS
+Startup MVP
+AI Dashboard
+React SaaS
+Next.js SaaS
+AI Web App
+OpenAI Interface
+SaaS Startup
+AI Product
