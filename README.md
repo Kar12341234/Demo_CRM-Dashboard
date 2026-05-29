@@ -1,4 +1,4 @@
-# Enterprise CRM & Operations Dashboard
+# CRM Dashboard | SaaS Internal Tool and Admin Panel
 
 Modern CRM and operations dashboard built with React, Next.js, TypeScript, Tailwind CSS, and scalable SaaS architecture.
 
